@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/85yijL-Y)
 ## Sujet 1 : Analyse des habitudes de consommation
 
 **Le concept :** Les étudiants créent un formulaire pour suivre les dépenses quotidiennes ou la consommation de ressources (café, temps d'écran, transport) au sein de la classe.
