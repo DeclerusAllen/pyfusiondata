@@ -15,7 +15,7 @@ from src.components import kpi_row, section_header, rapport_table
 
 st.set_page_config(
     page_title="Santé & Productivité",
-    page_icon="📊",
+    page_icon="",
     layout="wide",
 )
 
@@ -49,7 +49,7 @@ with st.sidebar:
     page = st.radio("Navigation", list(PAGES.keys()), label_visibility="collapsed")
     st.divider()
     st.caption("Données mises à jour toutes les 5 min")
-    st.caption(f"👥 n = {len(df)} répondants")
+    st.caption(f"n = {len(df)} répondants")
 
 section = PAGES[page]
 
@@ -65,7 +65,7 @@ if section == "vue":
 
 elif section == "sommeil":
     section_header(
-        "💤 Sommeil & Productivité",
+        "Sommeil & Productivité",
         "Exploration du lien entre les heures de sommeil et la productivité ressentie",
     )
     col1, col2 = st.columns(2)
@@ -76,7 +76,7 @@ elif section == "sommeil":
 
 elif section == "sport":
     section_header(
-        "🏃 Sport & Énergie",
+        "Sport & Énergie",
         "Impact de la fréquence d'activité physique sur la productivité et l'énergie",
     )
     st.pyplot(plot_sport_productivite_energie(df))

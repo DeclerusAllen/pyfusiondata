@@ -1,47 +1,103 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/85yijL-Y)
-## Sujet 1 : Analyse des habitudes de consommation
 
-**Le concept :** Les étudiants créent un formulaire pour suivre les dépenses quotidiennes ou la consommation de ressources (café, temps d'écran, transport) au sein de la classe.
+# Santé & Productivité 📊
 
-* **Collecte :** Formulaire avec champs : Date, Catégorie (Alimentation, Transport, Loisirs), Montant, et Sentiment (échelle de 1 à 5).
-* **Analyse avec NumPy/Pandas :**
-* Calculer la dépense moyenne par jour.
-* Grouper les données par catégorie avec Pandas pour voir où part l'argent.
-* Identifier le jour de la semaine le plus "coûteux".
+Bienvenue sur ce projet d’analyse interactive des liens entre habitudes de vie et productivité !  
+Ce tableau de bord, développé avec Streamlit, permet d’explorer comment le sommeil, le sport, l’hydratation ou encore le stress influencent notre efficacité au quotidien.
 
-* **Visualisation (Matplotlib) :**
-* **Diagramme circulaire (Pie Chart) :** Répartition des dépenses par catégorie.
-* **Histogramme :** Distribution des montants dépensés.
+## 🌱 Objectif
+
+L’objectif est simple :  
+Mieux comprendre, grâce à la donnée, quels facteurs de santé impactent le plus notre sentiment de productivité et d’énergie.
+
+## 🔍 Fonctionnalités principales
+
+- **Chargement automatique des données** (Google Sheets, anonymes, mises à jour toutes les 5 min)
+- **Nettoyage et normalisation** des réponses (gestion des valeurs manquantes, conversion des unités…)
+- **Visualisations interactives** :
+  - Nuages de points (sommeil vs productivité)
+  - Distributions et heatmaps de corrélation
+  - Analyse croisée sport, énergie, efficacité
+  - Pairplots et analyses multivariées
+- **KPIs dynamiques** : sommeil moyen, stress, énergie, productivité, nombre de répondants
+- **Rapport statistique** et synthèse des conclusions
+
+## 🛠️ Technologies utilisées
+
+- Python 3.13+
+- Streamlit
+- Pandas, NumPy
+- Matplotlib, Seaborn, SciPy
+
+## 🚀 Lancer l’application
+
+1. Installe les dépendances :
+	```sh
+	pip install -r requirements.txt
+	```
+	ou avec le pyproject.toml :
+	```sh
+	pip install .
+	```
+
+2. Lance le dashboard Streamlit :
+	```sh
+	streamlit run main.py
+	```
+
+3. Ouvre le lien local affiché dans ton navigateur.
+
+## 📊 Structure du projet
+
+- `main.py` : point d’entrée Streamlit, navigation et affichage
+- `src/data_loader.py` : chargement et renommage des données
+- `src/preprocessing.py` : nettoyage, normalisation, mapping des réponses
+- `src/visualizations.py` : toutes les fonctions de graphiques
+- `src/components.py` : composants réutilisables (KPIs, tableaux, headers)
+- `pyproject.toml` : dépendances et configuration du projet
+
+## 📈 Exemple de questions analysées
+
+- Dormir plus = être plus productif ?
+- Le sport régulier réduit-il le stress ?
+- L’hydratation influence-t-elle l’énergie ?
+- Quels facteurs sont les plus corrélés à la productivité ?
+
+## 🙌 Remerciements
+
+Merci à tous les participants pour leurs réponses anonymes et à l’équipe pédagogique pour l’inspiration !
+
 
 ---
 
-## Sujet 2 : Évaluation des performances et quiz interactif
+## 🗂️ Architecture du code
 
-**Le concept :** Créer un quiz de connaissances générales ou techniques. Les données collectées servent à analyser le niveau global des participants.
+Voici l’organisation du projet :
 
-* **Collecte :** Formulaire type "QCM". Les colonnes Google Sheet contiendront les réponses (vraies/fausses).
-* **Analyse avec NumPy/Pandas :**
-* Transformer les réponses textuelles en valeurs numériques (1 pour correct, 0 pour incorrect).
-* Utiliser NumPy pour calculer l'écart-type (`std()`) des scores pour mesurer l'homogénéité du groupe.
-* Calculer le taux de réussite par question pour identifier les sujets les plus difficiles.
+```
+├── main.py                # Point d'entrée Streamlit, logique de navigation et affichage principal
+├── pyproject.toml         # Dépendances et configuration du projet Python
+├── README.md              # Documentation du projet
+├── data/
+│   └── data.csv           # Jeu de données local (optionnel, sinon Google Sheets)
+├── src/
+│   ├── __init__.py        # Fichier d'initialisation du module
+│   ├── components.py      # Composants Streamlit réutilisables (KPIs, tableaux, headers)
+│   ├── data_loader.py     # Chargement et renommage des données depuis Google Sheets
+│   ├── preprocessing.py   # Nettoyage, normalisation, mapping des réponses
+│   ├── visualizations.py  # Fonctions de visualisation (graphiques, heatmaps, etc.)
+│   └── test.ipynb         # Notebook de tests et d'exploration (optionnel)
+└── .venv/                 # (optionnel) Environnement virtuel Python
+```
 
+### Rôle des principaux fichiers/dossiers
 
-* **Visualisation (Matplotlib) :**
-* **Bar Chart :** Taux de réussite pour chaque question.
-* **Boxplot (Boîte à moustaches) :** Pour visualiser la dispersion des notes et les valeurs aberrantes (outliers).
+- **main.py** : Orchestration de l’application, navigation entre les pages, affichage des sections.
+- **src/data_loader.py** : Téléchargement et préparation des données brutes.
+- **src/preprocessing.py** : Nettoyage, normalisation, conversion des réponses, création de rapports statistiques.
+- **src/visualizations.py** : Toutes les fonctions de graphiques (scatter, heatmap, pairplot, etc.).
+- **src/components.py** : Fonctions pour afficher des KPIs, tableaux, titres, etc. dans Streamlit.
+- **data/** : Contient éventuellement un export local des données (non versionné si sensible).
+- **pyproject.toml** : Liste des dépendances et configuration du projet Python.
+- **README.md** : Ce fichier, pour comprendre et utiliser le projet.
 
----
-
-## Sujet 3 : Étude de corrélation : Santé et Productivité
-
-**Le concept :** Explorer s'il existe un lien entre des facteurs de vie (heures de sommeil, sport) et le sentiment de productivité ou de stress.
-
-* **Collecte :** Formulaire anonyme demandant : Heures de sommeil, nombre de verres d'eau, minutes de sport, et niveau de stress ressenti (0 à 10), ect.
-* **Analyse avec NumPy/Pandas :**
-* Nettoyage des données (gestion des valeurs manquantes ou aberrantes).
-* Calculer la matrice de corrélation avec `pandas.corr()`.
-* Utiliser NumPy pour normaliser les données (mettre toutes les valeurs sur une échelle de 0 à 1).
-
-* **Visualisation (Matplotlib) :**
-* **Scatter Plot (Nuage de points) :** Afficher l'évolution de la productivité en fonction des heures de sommeil.
-* **Heatmap (Carte de chaleur) :** Représenter la matrice de corrélation pour voir quels facteurs sont liés entre eux.
+N’hésite pas à explorer chaque fichier pour voir comment les données sont traitées et visualisées !

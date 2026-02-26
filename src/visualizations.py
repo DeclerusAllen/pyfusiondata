@@ -57,7 +57,7 @@ def plot_scatter_sommeil_productivite(df: pd.DataFrame) -> plt.Figure:
     sns.regplot(
         data=df, x="Sommeil_moyen", y="Productivite_7j", ax=ax,
         color="#5B9BD5",
-        scatter_kws={"alpha": 0.7, "s": 80, "edgecolors": "white", "linewidth": 0.5},
+        scatter_kws={"alpha": 0.7, "s": 80},
         line_kws={"color": "#C0392B", "lw": 2, "linestyle": "--"},
     )
 
