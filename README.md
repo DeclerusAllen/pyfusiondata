@@ -1,4 +1,4 @@
-
+# [![Ouvrir l’application en ligne](https://img.shields.io/badge/🚀%20Voir%20PyFusion%20en%20ligne-Streamlit-green?style=for-the-badge)](https://pyfusiondata.streamlit.app/)
 # Santé & Productivité 📊
 
 Bienvenue sur ce projet d’analyse interactive des liens entre habitudes de vie et productivité !  
