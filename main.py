@@ -192,12 +192,28 @@ PAGES = {
 }
 
 with st.sidebar:
-    st.image(LOGO_URL, use_container_width=True)
+    st.markdown(
+        f"""
+        <div style='display:flex;justify-content:center;margin-bottom:1rem;'>
+            <div style='
+                width:90px;height:90px;
+                border-radius:50%;
+                overflow:hidden;
+                border:3px solid #A41E37;
+                box-shadow:0 2px 8px rgba(164,30,55,0.10);
+                background:#fff;
+                display:flex;align-items:center;justify-content:center;
+            '>
+                <img src='{LOGO_URL}' style='width:80px;height:80px;object-fit:cover;' />
+            </div>
+        </div>
+        """, unsafe_allow_html=True
+    )
     st.markdown("<hr style='border-color:#A41E37;margin:0.8rem 0;'>", unsafe_allow_html=True)
     st.markdown(
         "<div style='text-align:center;margin-bottom:0.8rem;'>"
         "<span style='color:#A41E37;font-size:1.1rem;font-weight:800;'>PyFusion</span><br>"
-        "<span style='color:#555;font-size:0.78rem;'>Python orientée Data · ESIH</span>"
+        "<span style='color:#555;font-size:0.78rem;'>Python orientée Data · M1/ESIH</span>"
         "</div>",
         unsafe_allow_html=True,
     )
@@ -215,7 +231,7 @@ section = PAGES[page]
 
 def footer():
     st.markdown(
-        f"<div class='footer'>PyFusion · <span>Python orientée Data</span> · ESIH · n={n} répondants</div>",
+        f"<div class='footer'>PyFusion · <span>Python orientée Data</span> · M1/ESIH · n={n} répondants</div>",
         unsafe_allow_html=True,
     )
 
