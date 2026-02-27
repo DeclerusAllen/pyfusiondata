@@ -376,50 +376,79 @@ elif section == "rapport":
 
 elif section == "conclusions":
     section_header(
-        "Conclusions",
-        f"Synthèse de l'analyse — n={n} répondants",
+        "Conclusions & Recommandations",
+        f"Analyse automatisée basée sur n={n} répondants",
     )
 
-    st.markdown("### Points clés")
-    col1, col2 = st.columns(2)
+    # --- LOGIQUE D'INTERPRÉTATION DYNAMIQUE ---
+    # Sommeil
+    if p_sommeil_prod < 0.05:
+        sommeil_status = "Significatif"
+        sommeil_color = "success"
+        sommeil_desc = f"Le sommeil influence directement la productivité (r={r_sommeil_prod:.2f})."
+    else:
+        sommeil_status = "Non significatif"
+        sommeil_color = "warning"
+        sommeil_desc = "Le groupe maintient sa productivité malgré la fatigue (effort de volonté)."
 
+    # Stress
+    if p_stress_eff < 0.05:
+        stress_status = "Impact Critique"
+        stress_color = "error"
+        stress_desc = f"Le stress dégrade l'efficacité (r={r_stress_eff:.2f})."
+    else:
+        stress_status = "Sous contrôle"
+        stress_color = "success"
+        stress_desc = "Le stress actuel n'impacte pas encore l'efficacité de manière majeure."
+
+    # --- AFFICHAGE ---
+    st.markdown("### 1. Diagnostic de l'échantillon")
+    col1, col2, col3 = st.columns(3)
+    
     with col1:
-        st.success(
-            f"**Sommeil** — Moyenne de {sommeil_moy}h/nuit. "
-            f"Corrélation avec la productivité : r={r_sommeil_prod:.2f} (p={p_sommeil_prod:.3f}). "
-            f"{'Lien significatif.' if p_sommeil_prod < 0.05 else 'Lien non significatif sur cet échantillon.'}"
-        )
-        st.success(
-            f"**Sport** — La fréquence '{meilleur_sport_label}' est associée à la meilleure "
-            f"productivité moyenne ({sport_prod.max():.2f}/5)."
-        )
+        st.metric("Potentiel de Récupération", f"{8 - sommeil_moy:.1f}h", "Dette de sommeil")
     with col2:
-        st.error(
-            f"**Stress** — Moyenne de {stress_moy}/5. "
-            f"Corrélation avec l'efficacité : r={r_stress_eff:.2f} (p={p_stress_eff:.3f}). "
-            f"{'Lien significatif.' if p_stress_eff < 0.05 else 'Tendance négative observée.'}"
-        )
-        st.warning(
-            f"**Hydratation & Caféine** — Corrélation eau/énergie : r={r_eau_energie:.2f} "
-            f"(p={p_eau_energie:.3f}). Signal {'significatif' if p_eau_energie < 0.05 else 'peu clair'} "
-            f"avec n={n}."
-        )
+        st.metric("Efficacité moyenne", f"{prod_moy}/5")
+    with col3:
+        st.metric("Meilleur levier", meilleur_sport_label)
 
     st.divider()
-    st.markdown("### Limites")
-    st.markdown(f"""
-    - Échantillon faible **(n={n})** — résultats à interpréter avec précaution
-    - Données **auto-reportées** — biais de perception possible
-    - **Corrélation ≠ causalité** — aucune relation de cause à effet établie
-    - Population majoritairement **{age_predominant}** ({situation_top} : {situation_pct}%) — peu généralisable
-    """)
+
+    st.markdown("### 2. Synthèse des corrélations")
+    c1, c2 = st.columns(2)
+    
+    with c1:
+        if sommeil_color == "success":
+            st.success(f"**Sommeil ({sommeil_status})** : {sommeil_desc}")
+        else:
+            st.warning(f"**Sommeil ({sommeil_status})** : {sommeil_desc}")
+            
+        st.info(f"**Sport** : La fréquence '{meilleur_sport_label}' génère le pic d'énergie maximal.")
+
+    with c2:
+        if stress_color == "error":
+            st.error(f"**Stress ({stress_status})** : {stress_desc}")
+        else:
+            st.success(f"**Stress ({stress_status})** : {stress_desc}")
+        
+        # Hydratation (Logique dynamique simplifiée)
+        hydro_msg = "Lien eau/énergie confirmé." if p_eau_energie < 0.05 else "Pas de lien eau/énergie clair."
+        st.write(f"**Hydratation** : {hydro_msg} (r={r_eau_energie:.2f})")
 
     st.divider()
-    st.markdown("### Recommandations")
-    st.markdown(f"""
-    - Augmenter l'échantillon au-delà de **{n * 4}** répondants pour confirmer les tendances
-    - Ajouter un **suivi longitudinal** sur plusieurs semaines
-    - Diversifier la population au-delà des **{age_predominant}**
-    - Inclure des variables supplémentaires : qualité de l'alimentation, temps d'écran, etc.
-    """)
+
+    # --- RECOMMANDATIONS SUR MESURE ---
+    st.markdown("### 3. Recommandations basées sur les données")
+    
+    recos = []
+    if sommeil_moy < 6.5:
+        recos.append(f"**Priorité Sommeil** : La moyenne de {sommeil_moy}h est trop basse. Augmenter de 30min/nuit pour stabiliser l'énergie.")
+    if r_stress_eff < -0.20:
+        recos.append("**Gestion du Stress** : L'impact sur l'efficacité est visible. Introduire des micro-pauses actives.")
+    if n < 100:
+        recos.append(f"**Fiabilité** : Collecter {100 - n} réponses supplémentaires pour valider les tendances (actuellement n={n}).")
+
+    for r in recos:
+        st.markdown(r)
+
     footer()

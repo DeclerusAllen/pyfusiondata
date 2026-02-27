@@ -213,7 +213,7 @@ def plot_correlation(corr: pd.DataFrame, df_normalized: pd.DataFrame) -> plt.Fig
 
     fig, ax = plt.subplots(figsize=(13, 11), facecolor=BG)
 
-    cmap = sns.diverging_palette(0, 220, s=75, l=50, as_cmap=True)
+    cmap = sns.diverging_palette(220, 0, s=75, l=50, as_cmap=True)
 
     sns.heatmap(
         corr_labeled, ax=ax, mask=mask_upper,
@@ -225,8 +225,8 @@ def plot_correlation(corr: pd.DataFrame, df_normalized: pd.DataFrame) -> plt.Fig
         cbar_kws={"shrink": 0.75, "label": "Coefficient de Pearson (r)"},
     )
 
-    annot_ns       = corr_labeled.copy().astype(str)
-    annot_ns[:]    = ""
+    annot_ns = corr_labeled.copy().astype(str)
+    annot_ns[:] = ""
     annot_ns[mask_sig] = "ns"
 
     sns.heatmap(
@@ -246,8 +246,8 @@ def plot_correlation(corr: pd.DataFrame, df_normalized: pd.DataFrame) -> plt.Fig
 
     patches = [
         mpatches.Patch(color=ESIH_RED,   label="Corrélation positive forte (→ 1)"),
-        mpatches.Patch(color="#3a6186",   label="Corrélation négative forte (→ -1)"),
-        mpatches.Patch(color="#f7f7f7",   label="Pas de lien (→ 0)"),
+        mpatches.Patch(color="#3a6186",  label="Corrélation négative forte (→ -1)"),
+        mpatches.Patch(color="#f7f7f7",  label="Pas de lien (→ 0)"),
         mpatches.Patch(facecolor="white", edgecolor=GREY, label="ns = non significatif (p >= 0.05)"),
     ]
     ax.legend(
@@ -258,4 +258,5 @@ def plot_correlation(corr: pd.DataFrame, df_normalized: pd.DataFrame) -> plt.Fig
 
     fig.text(0.5, 0.01, FOOTER, ha="center", fontsize=8, color=GREY, style="italic")
     plt.tight_layout()
+    
     return fig
