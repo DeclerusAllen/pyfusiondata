@@ -46,21 +46,14 @@ Mieux comprendre, grâce à la donnée, quels facteurs de santé impactent le pl
 
 3. Ouvre le lien local affiché dans ton navigateur.
 
-## 📊 Structure du projet
 
-- `main.py` : point d’entrée Streamlit, navigation et affichage
-- `src/data_loader.py` : chargement et renommage des données
-- `src/preprocessing.py` : nettoyage, normalisation, mapping des réponses
-- `src/visualizations.py` : toutes les fonctions de graphiques
-- `src/components.py` : composants réutilisables (KPIs, tableaux, headers)
-- `pyproject.toml` : dépendances et configuration du projet
 
-## 📈 Exemple de questions analysées
+## 🎯 Objectifs de l'analyse
 
-- Dormir plus = être plus productif ?
-- Le sport régulier réduit-il le stress ?
-- L’hydratation influence-t-elle l’énergie ?
-- Quels facteurs sont les plus corrélés à la productivité ?
+1. Identifier les corrélations entre variables de santé et productivité
+2. Comparer les profils selon la fréquence de sport et le sommeil
+3. Quantifier l'impact du stress sur l'efficacité ressentie
+4. Produire des recommandations basées sur les données
 
 ## 🙌 Remerciements
 
